@@ -1,0 +1,78 @@
+.about {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4rem 0;
+  gap: 2rem;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h2 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.about-text h3 {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 1rem;
+}
+
+.about-text p {
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.about-images {
+  flex: 1;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.about-images img {
+  width: 250px;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  position: absolute;
+}
+
+.about-images .img1 {
+  top: 30px;
+  left: 0;
+  z-index: 1;
+}
+
+.about-images .img2 {
+  top: 0;
+  left: 120px;
+  z-index: 2;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-images {
+    margin-top: 2rem;
+    display: flex; /* ✅ umesto absolute, vrati u flex */
+    justify-content: center;
+    gap: 1rem;
+    position: static; /* ✅ resetujemo position */
+  }
+
+  .about-images img {
+    position: static; /* ✅ resetujemo absolute na mobile */
+    width: 45%; /* slike pored, ali manje */
+  }
+}

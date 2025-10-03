@@ -1,0 +1,56 @@
+/* Globalni reset i tipografija */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  line-height: 1.6;
+  background-color: #fff;
+  color: #333;
+}
+
+/* Container za sve sekcije */
+.container {
+  max-width: 1200px;
+  margin: 0 auto 4rem auto;
+  padding: 0 2rem;
+}
+
+/* Utility klase */
+.text-center {
+  text-align: center;
+}
+
+.mt-2 {
+  margin-top: 1rem;
+}
+.mt-4 {
+  margin-top: 2rem;
+}
+.mb-2 {
+  margin-bottom: 1rem;
+}
+.mb-4 {
+  margin-bottom: 2rem;
+}
+
+/* Globalne boje */
+:root {
+  --primary: #f4ce14; /* žuta iz wireframe-a */
+  --secondary: #495e57; /* tamno zelena */
+  --accent: #ee9972; /* narandžasta */
+  --light: #edefee; /* siva pozadina */
+  --dark: #333333;
+}
+
+/* @keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
