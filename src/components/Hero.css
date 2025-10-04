@@ -1,0 +1,103 @@
+.hero {
+  background-color: var(--color-primary-green);
+  color: var(--color-secondary-light);
+  min-height: 600px;
+  display: flex;
+  align-items: stretch;
+}
+
+.hero-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 3rem;
+  width: 100%;
+}
+
+.hero-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding-top: 4rem;
+  padding-bottom: 2rem;
+}
+
+.hero-text h1 {
+  font-family: "Markazi Text", serif;
+  font-size: 64px;
+  color: var(--color-primary-yellow);
+  margin-bottom: 0.5rem;
+}
+
+.hero-text h2 {
+  font-family: "Markazi Text", serif;
+  font-size: 40px;
+  margin-bottom: 1rem;
+  color: var(--color-secondary-light);
+}
+
+.hero-text p {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+  line-height: 1.6;
+  max-width: 500px;
+  font-size: 16px;
+  font-family: "Karla", sans-serif;
+}
+
+.btn-primary {
+  background-color: var(--color-primary-yellow);
+  color: var(--color-secondary-dark);
+  font-family: "Karla", sans-serif;
+  font-weight: bold;
+  margin-top: 8rem;
+  padding: 1rem 1.5rem;
+  border: none;
+  cursor: pointer;
+  border-radius: 16px;
+  transition: background 0.3s ease;
+  max-width: 250px;
+  font-size: 18px;
+}
+
+.btn-primary:hover {
+  background-color: var(--color-secondary-orange);
+  color: white;
+}
+
+.hero-image {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.hero-image img {
+  height: 700px;
+  width: auto;
+  object-fit: cover;
+  border-radius: 16px;
+  margin-top: 30px;
+  margin-bottom: -150px;
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-text {
+    width: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .hero-image img {
+    width: 100%;
+    height: auto;
+  }
+}

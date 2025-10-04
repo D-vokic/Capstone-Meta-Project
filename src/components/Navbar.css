@@ -1,0 +1,68 @@
+.App-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: var(--color-secondary-light);
+  border-bottom: 1px solid var(--color-secondary-dark);
+  position: relative;
+}
+
+.App-logo {
+  height: 50px;
+  width: auto;
+}
+
+.App-links {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.App-links a {
+  text-decoration: none;
+  color: var(--color-secondary-dark);
+  font-family: "Karla", sans-serif;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.App-links a:hover {
+  color: var(--color-primary-yellow);
+}
+
+.nav-toggle {
+  display: none;
+  font-size: 1.8rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--color-secondary-dark);
+}
+
+@media (max-width: 768px) {
+  .App-links {
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: var(--color-secondary-light);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 2rem;
+    display: none;
+    width: 200px;
+    border-left: 1px solid var(--color-secondary-dark);
+    border-bottom: 1px solid var(--color-secondary-dark);
+  }
+
+  .App-links.open {
+    display: flex;
+  }
+
+  .nav-toggle {
+    display: block;
+  }
+}

@@ -1,0 +1,11 @@
+:root {
+  /* Primary colors */
+  --color-primary-green: #495e57;
+  --color-primary-yellow: #f4ce14;
+
+  /* Secondary colors */
+  --color-secondary-orange: #ee9972;
+  --color-secondary-peach: #fbdabb;
+  --color-secondary-light: #edefee;
+  --color-secondary-dark: #333333;
+}
