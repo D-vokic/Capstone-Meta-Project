@@ -15,7 +15,6 @@ function App() {
       <Testimonials />
       <About />
       <Footer />
-      {/* ovde idu ostale sekcije: Hero, Specials, Testimonials, About, Footer */}
     </>
   );
 }
