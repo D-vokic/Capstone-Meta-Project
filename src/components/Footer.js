@@ -1,58 +1,56 @@
 import "./Footer.css";
-import logo from "../images/Logo.svg";
+import Logo from "../images/Logo.svg";
+import Restaurant from "../images/restaurant.jpg"; // dodaj odgovarajuću sliku restorana
 
-function Footer() {
+const Footer = () => {
   return (
     <footer className="footer">
-      <div className="container footer-content">
-        {/* Logo */}
+      <div className="footer-container">
+        {/* Logo i slika restorana */}
         <div className="footer-logo">
-          <img src={logo} alt="Little Lemon logo" />
+          <img src={Logo} alt="Little Lemon logo" className="logo" />
+          <img
+            src={Restaurant}
+            alt="Little Lemon restaurant"
+            className="restaurant"
+          />
         </div>
 
-        {/* Navigation */}
-        <div className="footer-col">
-          <h4>Doormat Navigation</h4>
+        {/* Doormat Navigation */}
+        <div className="footer-column">
+          <h5>Doormat Navigation</h5>
           <ul>
-            <li>
-              <a href="/">Home</a>
-            </li>
-            <li>
-              <a href="/about">About</a>
-            </li>
-            <li>
-              <a href="/menu">Menu</a>
-            </li>
-            <li>
-              <a href="/reservations">Reservations</a>
-            </li>
-            <li>
-              <a href="/order-online">Order Online</a>
-            </li>
-            <li>
-              <a href="/login">Login</a>
-            </li>
+            <li>Home</li>
+            <li>About</li>
+            <li>Menu</li>
+            <li>Reservations</li>
+            <li>Order Online</li>
+            <li>Login</li>
           </ul>
         </div>
 
         {/* Contact */}
-        <div className="footer-col">
-          <h4>Contact</h4>
-          <p>123 Main Street, Chicago, IL</p>
-          <p>+1 (312) 123-4567</p>
-          <p>info@littlelemon.com</p>
+        <div className="footer-column">
+          <h5>Contact</h5>
+          <ul>
+            <li>123 Main Street, Chicago, IL</li>
+            <li>Tel: (312) 555-1234</li>
+            <li>Email: info@littlelemon.com</li>
+          </ul>
         </div>
 
-        {/* Social media */}
-        <div className="footer-col">
-          <h4>Social Media Links</h4>
-          <p>Facebook</p>
-          <p>Instagram</p>
-          <p>Twitter</p>
+        {/* Social Media Links */}
+        <div className="footer-column">
+          <h5>Social Media Links</h5>
+          <ul>
+            <li>Facebook</li>
+            <li>Instagram</li>
+            <li>Twitter</li>
+          </ul>
         </div>
       </div>
     </footer>
   );
-}
+};
 
 export default Footer;

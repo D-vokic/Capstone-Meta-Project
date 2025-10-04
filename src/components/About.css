@@ -11,23 +11,27 @@
 }
 
 .about-text h2 {
-  font-size: 2rem;
-  color: #333;
+  font-family: "Markazi Text", serif;
+  font-size: 40px;
+  color: var(--color-secondary-dark);
   margin-bottom: 0.5rem;
 }
 
 .about-text h3 {
-  font-size: 1.2rem;
+  font-family: "Markazi Text", serif;
+  font-size: 24px;
   font-weight: 500;
-  color: #555;
+  color: var(--color-primary-green);
   margin-bottom: 1rem;
 }
 
 .about-text p {
-  font-size: 1rem;
-  color: #444;
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  color: var(--color-secondary-dark);
   margin-bottom: 1rem;
   line-height: 1.6;
+  max-width: 65ch;
 }
 
 .about-images {
@@ -39,7 +43,7 @@
 
 .about-images img {
   width: 250px;
-  border-radius: 8px;
+  border-radius: 16px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
   position: absolute;
 }
@@ -56,7 +60,6 @@
   z-index: 2;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .about {
     flex-direction: column;
@@ -65,14 +68,14 @@
 
   .about-images {
     margin-top: 2rem;
-    display: flex; /* ✅ umesto absolute, vrati u flex */
+    display: flex;
     justify-content: center;
     gap: 1rem;
-    position: static; /* ✅ resetujemo position */
+    position: static;
   }
 
   .about-images img {
-    position: static; /* ✅ resetujemo absolute na mobile */
-    width: 45%; /* slike pored, ali manje */
+    position: static;
+    width: 45%;
   }
 }

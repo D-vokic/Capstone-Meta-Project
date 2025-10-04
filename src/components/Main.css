@@ -10,21 +10,26 @@
 }
 
 .specials-header h2 {
-  font-size: 2rem;
+  font-family: "Markazi Text", serif;
+  font-size: 40px;
+  color: var(--color-secondary-dark);
 }
 
 .btn-dark {
-  background-color: #333;
-  color: white;
+  background-color: var(--color-secondary-dark);
+  color: var(--color-secondary-light);
   border: none;
-  padding: 0.5rem 1rem;
-  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  border-radius: 16px;
   cursor: pointer;
+  font-family: "Karla", sans-serif;
+  font-weight: 600;
   transition: background 0.3s ease;
 }
 
 .btn-dark:hover {
-  background-color: #555;
+  background-color: var(--color-primary-green);
+  color: white;
 }
 
 .specials-grid {
@@ -33,10 +38,9 @@
   gap: 2rem;
 }
 
-/* Kartice */
 .card {
-  background: #f9f9f9;
-  border-radius: 10px;
+  background: var(--color-secondary-light);
+  border-radius: 16px;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -65,30 +69,40 @@
 
 .card-title h3 {
   margin: 0;
-  font-size: 1.2rem;
+  font-family: "Markazi Text", serif;
+  font-size: 20px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: var(--color-secondary-dark);
 }
 
 .price {
-  color: #e63946;
-  font-weight: bold;
+  color: var(--color-secondary-orange);
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  font-weight: 500; /* medium */
 }
 
 .card-body p {
   flex-grow: 1;
   margin-bottom: 1rem;
+  font-family: "Karla", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--color-secondary-dark);
 }
 
 .order-link {
-  color: black;
+  color: var(--color-secondary-dark);
   font-weight: 600;
   text-decoration: none;
+  font-family: "Karla", sans-serif;
 }
 
 .order-link:hover {
   text-decoration: underline;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .specials-header {
     flex-direction: column;
@@ -97,19 +111,19 @@
   }
 
   .specials-header h2 {
-    font-size: 1.5rem;
+    font-size: 32px;
   }
 
   .btn-dark {
-    width: 100%; /* dugme se širi na celu širinu */
+    width: 100%;
     text-align: center;
   }
 
   .specials-grid {
-    grid-template-columns: 1fr; /* kartice u jedan red */
+    grid-template-columns: 1fr;
   }
 
   .card img {
-    height: auto; /* slika fleksibilna */
+    height: auto;
   }
 }

@@ -1,65 +1,153 @@
-.footer {
-  background-color: #f9f9f9;
-  padding: 3rem 0;
-  border-top: 1px solid #ddd;
+/* .footer-background {
+  background-color: var(--color-secondary-dark);
+  padding: 60px 0;
+}
+
+.footer-container {
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  color: var(--color-secondary-light);
+  font-family: "Karla", sans-serif;
+}
+
+.footer-container p {
+  width: 60%;
+  margin: 10px 0 60px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.footer-container img {
+  width: 80px;
 }
 
 .footer-content {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 20% 40% 40%;
+  gap: 20px;
+  font-size: 16px;
+  margin-bottom: 60px;
+}
+
+.footer-content ul li {
+  text-transform: capitalize;
+  font-size: 16px;
+}
+
+.footer-content h5 {
+  margin-bottom: 30px;
+  font-family: "Karla", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  text-transform: uppercase;
+  color: var(--color-primary-yellow);
+}
+
+@media screen and (max-width: 1024px) {
+  .footer-container {
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+
+  .footer-container p {
+    width: 90%;
+    font-size: 14px;
+  }
+
+  .footer-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .footer-content h5 {
+    margin-bottom: 20px;
+    font-size: 16px;
+  }
+
+  .footer-content ul {
+    margin-bottom: 40px;
+  }
+
+  .footer-content ul li {
+    font-size: 14px;
+  }
+} */
+
+.footer {
+  background-color: var(--color-primary-green);
+  padding: 4rem 0;
+}
+
+.footer-container {
+  width: 85%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 25% 25% 25% 25%;
   gap: 2rem;
-  align-items: flex-start;
+  align-items: start;
+  color: var(--color-secondary-light);
+  font-family: "Karla", sans-serif;
 }
 
-.footer-logo img {
-  max-width: 120px;
+.footer-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.footer-col h4 {
-  font-size: 1rem;
-  font-weight: bold;
+/* Logo na vrhu */
+.footer-logo img.logo {
+  width: 120px;
+  height: auto;
+  filter: brightness(0) invert(1); /* logo SVG u belo */
+}
+
+/* Slika restorana ispod logotipa */
+.footer-logo img.restaurant {
+  width: 100%;
+  max-width: 180px;
+  border-radius: 16px;
+  object-fit: cover;
+}
+
+.footer-column h5 {
+  font-family: "Karla", sans-serif;
+  font-size: 20px;
+  font-weight: 800; /* extrabold */
+  text-transform: uppercase;
   margin-bottom: 1rem;
-  color: #333;
+  color: var(--color-primary-yellow);
 }
 
-.footer-col ul {
+.footer-column ul {
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.footer-col ul li {
+.footer-column ul li {
   margin-bottom: 0.5rem;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--color-secondary-light);
 }
 
-.footer-col a {
-  text-decoration: none;
-  color: #444;
-  transition: color 0.3s ease;
+.footer-column ul li:hover {
+  color: var(--color-primary-yellow);
+  cursor: pointer;
 }
 
-.footer-col a:hover {
-  color: #61dafb;
-}
-
-/* Responsive */
 @media (max-width: 768px) {
-  .footer-content {
-    grid-template-columns: 1fr 1fr;
+  .footer-container {
+    grid-template-columns: 1fr;
     text-align: center;
   }
 
-  .footer-col {
-    margin-bottom: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-content {
-    grid-template-columns: 1fr;
-  }
-
   .footer-logo {
-    margin-bottom: 2rem;
+    margin: 0 auto 2rem;
   }
 }
