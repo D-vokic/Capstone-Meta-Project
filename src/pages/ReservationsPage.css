@@ -1,4 +1,4 @@
-.reservations-page {
+/* .reservations-page {
   padding: 6rem 0;
   background-color: #fffbea;
 }
@@ -90,7 +90,6 @@
   transform: translateY(-2px);
 }
 
-/* Responsive */
 @media (max-width: 768px) {
   .reservations-header h1 {
     font-size: 2.2rem;
@@ -102,5 +101,148 @@
 
   .form-row {
     flex-direction: column;
+  }
+} */
+
+.reservations-page {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.reservations-overlay {
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 5rem 8%;
+  gap: 3rem;
+}
+
+.reservations-text {
+  flex: 1;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 600px;
+}
+
+.reservations-text h1 {
+  font-family: "Markazi Text", serif;
+  font-size: 2.8rem;
+  line-height: 1.3;
+  margin-bottom: 1.2rem;
+  color: white;
+}
+
+.reservations-text p {
+  font-family: "Karla", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: 0.8rem;
+}
+
+.reservations-form {
+  flex: 1;
+  background-color: white;
+  border-radius: 12px;
+  padding: 2.5rem;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  max-width: 480px;
+}
+
+.reservations-form h2 {
+  font-family: "Markazi Text", serif;
+  font-size: 1.8rem;
+  color: var(--color-primary-green);
+  margin-bottom: 0.5rem;
+}
+
+.reservations-form p {
+  font-family: "Karla", sans-serif;
+  font-size: 0.95rem;
+  color: var(--color-secondary-dark);
+  margin-bottom: 1.5rem;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: var(--color-primary-green);
+  margin-bottom: 0.3rem;
+}
+
+.form-group input,
+.form-group select {
+  font-family: "Karla", sans-serif;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #ffffff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--color-primary-yellow);
+  box-shadow: 0 0 5px rgba(244, 206, 20, 0.5);
+  outline: none;
+}
+
+.form-group select option {
+  background-color: #ffffff;
+  color: var(--color-secondary-dark);
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.reserve-btn {
+  width: 100%;
+  background-color: var(--color-primary-green);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 600;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  margin-top: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reserve-btn:hover {
+  background-color: var(--color-primary-yellow);
+  color: var(--color-secondary-dark);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 992px) {
+  .reservations-overlay {
+    flex-direction: column;
+    padding: 3rem 5%;
+  }
+
+  .reservations-form {
+    max-width: 100%;
+  }
+
+  .reservations-text h1 {
+    font-size: 2.2rem;
   }
 }
