@@ -6,14 +6,15 @@ import Main from "./components/Main.js";
 import Testimonials from "./components/Testimonials.js";
 import About from "./components/About.js";
 import Footer from "./components/Footer.js";
-import AboutPage from "./pages/AboutPage.js"; // ✅ nova stranica
+import AboutPage from "./pages/AboutPage.js";
+import MenuPage from "./pages/MenuPage.js";
+import Reservations from "./pages/ReservationsPage.js";
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        {/* Home page */}
         <Route
           path="/"
           element={
@@ -26,13 +27,29 @@ function App() {
             </>
           }
         />
-
-        {/* About page */}
         <Route
           path="/about"
           element={
             <>
               <AboutPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/menu"
+          element={
+            <>
+              <MenuPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/reservations"
+          element={
+            <>
+              <Reservations />
               <Footer />
             </>
           }

@@ -1,0 +1,106 @@
+.reservations-page {
+  padding: 6rem 0;
+  background-color: #fffbea;
+}
+
+.reservations-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.reservations-header h1 {
+  font-family: "Markazi Text", serif;
+  font-size: 3rem;
+  color: var(--color-primary-green);
+  margin-bottom: 1rem;
+}
+
+.reservations-header p {
+  font-family: "Karla", sans-serif;
+  font-size: 1.2rem;
+  color: var(--color-secondary-dark);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.reservations-form {
+  max-width: 700px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  font-family: "Karla", sans-serif;
+  font-weight: 600;
+  color: var(--color-primary-green);
+  margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea {
+  font-family: "Karla", sans-serif;
+  font-size: 1rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--color-primary-yellow);
+  box-shadow: 0 0 5px rgba(244, 206, 20, 0.5);
+  outline: none;
+}
+
+.form-row {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.reserve-btn {
+  display: block;
+  width: 100%;
+  background-color: var(--color-primary-green);
+  color: white;
+  font-family: "Karla", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  padding: 0.9rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.reserve-btn:hover {
+  background-color: var(--color-primary-yellow);
+  color: var(--color-secondary-dark);
+  transform: translateY(-2px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .reservations-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .reservations-form {
+    padding: 2rem 1.5rem;
+  }
+
+  .form-row {
+    flex-direction: column;
+  }
+}
