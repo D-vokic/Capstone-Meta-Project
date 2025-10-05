@@ -9,6 +9,7 @@ import Footer from "./components/Footer.js";
 import AboutPage from "./pages/AboutPage.js";
 import MenuPage from "./pages/MenuPage.js";
 import ReservationsPage from "./pages/ReservationsPage.js";
+import OrderOnlinePage from "./pages/OrderOnlinePage.js";
 
 function App() {
   return (
@@ -50,6 +51,15 @@ function App() {
           element={
             <>
               <ReservationsPage />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/order-online"
+          element={
+            <>
+              <OrderOnlinePage />
               <Footer />
             </>
           }

@@ -1,0 +1,225 @@
+.order-page {
+  padding: 6rem 0;
+  background-color: #fffbea; /* blaga žuta podloga */
+  font-family: "Karla", sans-serif;
+}
+
+.order-hero {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.order-hero h1 {
+  font-family: "Markazi Text", serif;
+  font-size: 3rem;
+  color: var(--color-primary-green);
+  margin-bottom: 1rem;
+}
+
+.order-hero p {
+  font-size: 1.2rem;
+  color: var(--color-secondary-dark);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 3rem;
+}
+
+.filter-btn {
+  background-color: #ffffff;
+  border: 2px solid var(--color-primary-green);
+  color: var(--color-primary-green);
+  font-weight: 600;
+  padding: 0.6rem 1.4rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background-color: var(--color-primary-yellow);
+  color: var(--color-secondary-dark);
+  border-color: var(--color-primary-yellow);
+}
+
+.order-content {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 3rem;
+  padding: 0 5%;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.menu-card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+}
+
+.menu-img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.menu-info {
+  padding: 1.2rem 1.4rem;
+}
+
+.menu-info h3 {
+  font-family: "Markazi Text", serif;
+  font-size: 1.4rem;
+  color: var(--color-primary-green);
+  margin-bottom: 0.5rem;
+}
+
+.menu-info p {
+  color: #555;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-price {
+  font-weight: 700;
+  color: var(--color-primary-yellow);
+  font-size: 1.1rem;
+}
+
+.add-btn {
+  background-color: var(--color-primary-green);
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-btn:hover {
+  background-color: var(--color-primary-yellow);
+  color: var(--color-secondary-dark);
+}
+
+.cart-panel {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  height: fit-content;
+  position: sticky;
+  top: 5rem;
+}
+
+.cart-panel h2 {
+  font-family: "Markazi Text", serif;
+  color: var(--color-primary-green);
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.empty-cart {
+  color: #777;
+  font-size: 1rem;
+  text-align: center;
+  padding: 1rem 0;
+}
+
+.cart-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem 0;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.cart-item span {
+  font-size: 1rem;
+  color: var(--color-secondary-dark);
+}
+
+.remove-btn {
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  color: var(--color-primary-yellow);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.remove-btn:hover {
+  transform: scale(1.2);
+  color: var(--color-primary-green);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: var(--color-secondary-dark);
+}
+
+.checkout-btn {
+  width: 100%;
+  background-color: var(--color-primary-yellow);
+  color: var(--color-secondary-dark);
+  border: none;
+  padding: 0.8rem;
+  border-radius: 10px;
+  font-weight: 700;
+  margin-top: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.checkout-btn:hover {
+  background-color: var(--color-primary-green);
+  color: white;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .order-content {
+    grid-template-columns: 1fr;
+  }
+
+  .cart-panel {
+    position: relative;
+    top: 0;
+    margin-top: 2rem;
+  }
+}
