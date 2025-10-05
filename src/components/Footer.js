@@ -4,7 +4,7 @@ import Restaurant from "../images/restaurant.jpg"; // dodaj odgovarajuću sliku 
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="footer container">
       <div className="footer-container">
         {/* Logo i slika restorana */}
         <div className="footer-logo">

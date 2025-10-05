@@ -6,13 +6,14 @@ import Main from "./components/Main.js";
 import Testimonials from "./components/Testimonials.js";
 import About from "./components/About.js";
 import Footer from "./components/Footer.js";
+import AboutPage from "./pages/AboutPage.js"; // ✅ nova stranica
 
 function App() {
   return (
     <Router>
       <Navbar />
       <Routes>
-        {/* Home stranica */}
+        {/* Home page */}
         <Route
           path="/"
           element={
@@ -25,7 +26,17 @@ function App() {
             </>
           }
         />
-        {/* Kasnije možeš dodati i druge rute ako bude potrebno */}
+
+        {/* About page */}
+        <Route
+          path="/about"
+          element={
+            <>
+              <AboutPage />
+              <Footer />
+            </>
+          }
+        />
       </Routes>
     </Router>
   );

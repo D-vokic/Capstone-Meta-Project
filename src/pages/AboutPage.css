@@ -1,0 +1,64 @@
+.about-page {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  padding: 6rem 0;
+}
+
+.about-page-text {
+  flex: 1;
+}
+
+.about-page-text h1 {
+  font-family: "Markazi Text", serif;
+  font-size: 3rem;
+  color: var(--color-primary-green);
+  margin-bottom: 1.5rem;
+}
+
+.about-page-text p {
+  font-family: "Karla", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1.8;
+  color: var(--color-secondary-dark);
+  max-width: 550px;
+}
+
+.about-page-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-page-image img {
+  width: 100%;
+  max-width: 500px;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .about-page {
+    flex-direction: column-reverse;
+    text-align: center;
+    padding: 4rem 0;
+  }
+
+  .about-page-image img {
+    max-width: 90%;
+  }
+
+  .about-page-text h1 {
+    font-size: 2.2rem;
+  }
+
+  .about-page-text p {
+    font-size: 1.1rem;
+    max-width: 90%;
+    margin: 0 auto;
+  }
+}
