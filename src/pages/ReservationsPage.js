@@ -86,8 +86,6 @@ function ReservationsPage() {
           </article>
         </section>
       </main>
-
-      <Footer />
     </>
   );
 }
