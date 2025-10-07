@@ -2,6 +2,10 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## DEMO  
+[Live Preview on Netlify](https://booking-table-project.netlify.app/)
+
+
 ## Available Scripts
 
 In the project directory, you can run:
