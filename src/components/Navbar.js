@@ -1,57 +1,53 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import logo from "../images/Logo.svg";
+import React, { useState } from "react";
+import { NavLink } from "react-router-dom";
 import "./Navbar.css";
 
-function Navbar() {
+function Navbar({ theme = "light" }) {
   const [isOpen, setIsOpen] = useState(false);
 
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
   return (
-    <nav className="App-nav container">
-      <img src={logo} className="App-logo" alt="Little Lemon Logo" />
+    <nav className={`navbar ${theme}`}>
+      <div className="container navbar-inner">
+        <div className="logo">Little Lemon</div>
 
-      {/* Hamburger dugme */}
-      <button
-        className="nav-toggle"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-label="Toggle navigation"
-      >
-        {isOpen ? "✕" : "☰"}
-      </button>
+        {/* Hamburger dugme */}
+        <div className="menu-icon" onClick={toggleMenu}>
+          <span className={isOpen ? "bar open" : "bar"}></span>
+          <span className={isOpen ? "bar open" : "bar"}></span>
+          <span className={isOpen ? "bar open" : "bar"}></span>
+        </div>
 
-      {/* Linkovi */}
-      <ul className={`App-links ${isOpen ? "open" : ""}`}>
-        <li>
-          <Link to="/" onClick={() => setIsOpen(false)}>
-            Home
-          </Link>
-        </li>
-        <li>
-          <Link to="/about" onClick={() => setIsOpen(false)}>
-            About
-          </Link>
-        </li>
-        <li>
-          <Link to="/menu" onClick={() => setIsOpen(false)}>
-            Menu
-          </Link>
-        </li>
-        <li>
-          <Link to="/reservations" onClick={() => setIsOpen(false)}>
-            Reservations
-          </Link>
-        </li>
-        <li>
-          <Link to="/order-online" onClick={() => setIsOpen(false)}>
-            Order Online
-          </Link>
-        </li>
-        <li>
-          <Link to="/login" onClick={() => setIsOpen(false)}>
-            Login
-          </Link>
-        </li>
-      </ul>
+        {/* Navigacioni linkovi */}
+        <ul className={isOpen ? "nav-links active" : "nav-links"}>
+          <li>
+            <NavLink to="/" end>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/about">About</NavLink>
+          </li>
+          <li>
+            <NavLink to="/menu">Menu</NavLink>
+          </li>
+          <li>
+            <NavLink to="/reservations">Reservations</NavLink>
+          </li>
+          <li>
+            <NavLink to="/booking">Booking</NavLink>
+          </li>
+          <li>
+            <NavLink to="/order-online">Order Online</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login">Login</NavLink>
+          </li>
+        </ul>
+      </div>
     </nav>
   );
 }

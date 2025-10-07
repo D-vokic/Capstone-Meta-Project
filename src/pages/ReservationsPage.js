@@ -11,7 +11,6 @@ function ReservationsPage() {
     time: "",
     guests: "",
     occasion: "",
-    message: "",
   });
 
   const handleChange = (e) => {
@@ -31,7 +30,6 @@ function ReservationsPage() {
       time: "",
       guests: "",
       occasion: "",
-      message: "",
     });
   };
 
@@ -79,7 +77,7 @@ function ReservationsPage() {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              placeholder="someone@email.com"
+              placeholder="text@email.com"
               required
             />
           </div>
@@ -92,7 +90,7 @@ function ReservationsPage() {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              placeholder="000 85 023 0000"
+              placeholder="000 439 000 000"
               required
             />
           </div>
@@ -151,18 +149,6 @@ function ReservationsPage() {
                 required
               />
             </div>
-          </div>
-
-          <div className="form-group">
-            <label htmlFor="message">Special Requests (optional)</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="4"
-              value={formData.message}
-              onChange={handleChange}
-              placeholder="Any allergies, preferences, or special requests?"
-            ></textarea>
           </div>
 
           <button type="submit" className="reserve-btn">

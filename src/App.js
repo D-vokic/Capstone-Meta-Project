@@ -9,6 +9,7 @@ import Footer from "./components/Footer.js";
 import AboutPage from "./pages/AboutPage.js";
 import MenuPage from "./pages/MenuPage.js";
 import ReservationsPage from "./pages/ReservationsPage.js";
+import BookingPage from "./pages/BookingPage.js";
 import OrderOnlinePage from "./pages/OrderOnlinePage.js";
 import LoginPage from "./pages/LoginPage.js";
 
@@ -29,6 +30,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/about"
           element={
@@ -38,6 +40,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/menu"
           element={
@@ -47,6 +50,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/reservations"
           element={
@@ -56,6 +60,16 @@ function App() {
             </>
           }
         />
+
+        <Route
+          path="/booking"
+          element={
+            <>
+              <BookingPage />
+            </>
+          }
+        />
+
         <Route
           path="/order-online"
           element={
@@ -65,6 +79,7 @@ function App() {
             </>
           }
         />
+
         <Route
           path="/login"
           element={

@@ -1,0 +1,23 @@
+.booking-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+  background-color: #f4f5f7;
+  min-height: 100vh;
+}
+
+.booking-intro {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.booking-intro h1 {
+  font-size: 2rem;
+  color: #495e57;
+}
+
+.booking-intro p {
+  color: #333;
+  font-size: 1rem;
+}
