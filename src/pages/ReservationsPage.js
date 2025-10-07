@@ -6,7 +6,7 @@ import "./ReservationsPage.css";
 function ReservationsPage() {
   return (
     <>
-      <main className="reservations-page">
+      <main className="reservations-page container">
         <section className="hero-section">
           <div className="hero-overlay">
             <h1>Experience the perfect balance of tradition and luxury.</h1>
