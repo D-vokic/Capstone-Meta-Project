@@ -1,23 +1,27 @@
 import React, { useState } from "react";
 import "./BookingForm.css";
 
-function BookingForm() {
+function BookingForm({ availableTimes, dispatch, onDateChange }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
   const [occasion, setOccasion] = useState("");
-  const [availableTimes, setAvailableTimes] = useState([
-    "17:00",
-    "18:00",
-    "19:00",
-    "20:00",
-    "21:00",
-    "22:00",
-  ]);
+
+  const handleDateChange = (e) => {
+    const selectedDate = e.target.value;
+    setDate(selectedDate);
+    onDateChange(selectedDate); // obaveštava BookingMain da je datum promenjen
+    dispatch({ type: "UPDATE_TIMES", date: selectedDate }); // ažurira sate
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", { date, time, guests, occasion });
+    console.log("Form submitted:", {
+      date,
+      time,
+      guests,
+      occasion,
+    });
   };
 
   return (
@@ -27,7 +31,7 @@ function BookingForm() {
         type="date"
         id="res-date"
         value={date}
-        onChange={(e) => setDate(e.target.value)}
+        onChange={handleDateChange}
       />
 
       <label htmlFor="res-time">Choose time</label>
@@ -36,20 +40,24 @@ function BookingForm() {
         value={time}
         onChange={(e) => setTime(e.target.value)}
       >
-        {availableTimes.map((t) => (
-          <option key={t} value={t}>
-            {t}
-          </option>
-        ))}
+        {availableTimes && availableTimes.length > 0 ? (
+          availableTimes.map((t) => (
+            <option key={t} value={t}>
+              {t}
+            </option>
+          ))
+        ) : (
+          <option value="">No available times</option>
+        )}
       </select>
 
       <label htmlFor="guests">Number of guests</label>
       <input
         type="number"
         id="guests"
-        placeholder="1"
         min="1"
         max="10"
+        placeholder="1"
         value={guests}
         onChange={(e) => setGuests(e.target.value)}
       />

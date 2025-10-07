@@ -1,8 +1,7 @@
 .navbar {
-  /* background-color: #f5f6f5; */
-  background-color: #edefee;
+  background-color: #f5f6f5;
   padding: 1rem 0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
   position: relative;
   z-index: 100;
 }

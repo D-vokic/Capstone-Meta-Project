@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import "./Navbar.css";
+import Logo from "../images/Logo.svg";
 
 function Navbar({ theme = "light" }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -12,7 +13,9 @@ function Navbar({ theme = "light" }) {
   return (
     <nav className={`navbar ${theme}`}>
       <div className="container navbar-inner">
-        <div className="logo">Little Lemon</div>
+        <div className="logo">
+          <img src={Logo} alt="Little Lemon Logo" className="logo-img" />
+        </div>
 
         {/* Hamburger dugme */}
         <div className="menu-icon" onClick={toggleMenu}>
