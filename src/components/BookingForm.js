@@ -68,7 +68,8 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
       >
-        <option value="">Select occasion</option>
+        <option value="">Select Occasion</option>
+        <option value="Wedding">Wedding</option>
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
       </select>
