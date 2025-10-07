@@ -6,8 +6,6 @@ import "./ReservationsPage.css";
 function ReservationsPage() {
   return (
     <>
-      <Navbar theme="dark" />
-
       <main className="reservations-page">
         <section className="hero-section">
           <div className="hero-overlay">
