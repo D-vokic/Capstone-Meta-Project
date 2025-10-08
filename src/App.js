@@ -9,9 +9,10 @@ import Footer from "./components/Footer.js";
 import AboutPage from "./pages/AboutPage.js";
 import MenuPage from "./pages/MenuPage.js";
 import ReservationsPage from "./pages/ReservationsPage.js";
-import BookingPage from "./pages/BookingPage.js";
 import OrderOnlinePage from "./pages/OrderOnlinePage.js";
 import LoginPage from "./pages/LoginPage.js";
+import BookingPage from "./pages/BookingPage.js";
+import ConfirmedBooking from "./pages/ConfirmedBooking.js";
 
 function App() {
   return (
@@ -66,6 +67,7 @@ function App() {
           element={
             <>
               <BookingPage />
+              <Footer />
             </>
           }
         />
@@ -85,6 +87,16 @@ function App() {
           element={
             <>
               <LoginPage />
+              <Footer />
+            </>
+          }
+        />
+
+        <Route
+          path="/confirmed"
+          element={
+            <>
+              <ConfirmedBooking />
               <Footer />
             </>
           }

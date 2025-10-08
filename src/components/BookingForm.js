@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./BookingForm.css";
 
-function BookingForm({ availableTimes, dispatch, onDateChange }) {
+function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
@@ -16,12 +16,14 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", {
+    const formData = {
       date,
       time,
       guests,
       occasion,
-    });
+    };
+    console.log("📤 Form submitted:", formData);
+    submitForm(formData);
   };
 
   return (
@@ -32,6 +34,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
         id="res-date"
         value={date}
         onChange={handleDateChange}
+        required
       />
 
       <label htmlFor="res-time">Choose time</label>
@@ -39,6 +42,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
         id="res-time"
         value={time}
         onChange={(e) => setTime(e.target.value)}
+        required
       >
         {availableTimes && availableTimes.length > 0 ? (
           availableTimes.map((t) => (
@@ -57,9 +61,9 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
         id="guests"
         min="1"
         max="10"
-        placeholder="1"
         value={guests}
         onChange={(e) => setGuests(e.target.value)}
+        required
       />
 
       <label htmlFor="occasion">Occasion</label>
@@ -67,9 +71,9 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
         id="occasion"
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
+        required
       >
         <option value="">Select occasion</option>
-        <option value="Wedding">Wedding</option>
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>
       </select>
