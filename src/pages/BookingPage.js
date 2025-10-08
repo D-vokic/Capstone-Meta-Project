@@ -1,5 +1,5 @@
 import React from "react";
-import BookingForm from "../components/BookingForm";
+import BookingMain from "../components/BookingMain";
 import "./BookingPage.css";
 import Footer from "../components/Footer";
 
@@ -11,7 +11,7 @@ function BookingPage() {
           <h1>Reserve Your Table</h1>
           <p>Fill out the form below to make a reservation at Little Lemon.</p>
         </section>
-        <BookingForm />
+        <BookingMain />
       </main>
       <Footer />
     </>

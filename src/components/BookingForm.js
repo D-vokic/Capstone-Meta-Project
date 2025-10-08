@@ -10,8 +10,8 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
     setDate(selectedDate);
-    onDateChange(selectedDate); // obaveštava BookingMain da je datum promenjen
-    dispatch({ type: "UPDATE_TIMES", date: selectedDate }); // ažurira sate
+    onDateChange(selectedDate);
+    dispatch({ type: "UPDATE_TIMES", date: selectedDate });
   };
 
   const handleSubmit = (e) => {
@@ -68,7 +68,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange }) {
         value={occasion}
         onChange={(e) => setOccasion(e.target.value)}
       >
-        <option value="">Select Occasion</option>
+        <option value="">Select occasion</option>
         <option value="Wedding">Wedding</option>
         <option value="Birthday">Birthday</option>
         <option value="Anniversary">Anniversary</option>

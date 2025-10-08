@@ -1,23 +1,59 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import BookingForm from "./BookingForm";
+import { fetchAPI, submitAPI } from "../api"; // Import lokalnog API-ja
 
 export const initializeTimes = () => {
-  return ["17:00", "18:00", "19:00", "20:00", "21:00"];
+  const today = new Date();
+  return fetchAPI(today);
 };
 
 export const updateTimes = (state, action) => {
-  return state;
+  switch (action.type) {
+    case "UPDATE_TIMES":
+      return fetchAPI(new Date(action.date));
+    default:
+      return state;
+  }
 };
 
+// Reducer function to update the appointment when the date changes
+// export const updateTimes = (state, action) => {
+//   switch (action.type) {
+//     case "UPDATE_TIMES":
+//       const result = fetchAPI(new Date(action.date));
+//       console.log("📅 Selected date:", action.date);
+//       console.log("⏰ Available times from API:", result);
+//       return result;
+//     default:
+//       return state;
+//   }
+// };
+
 function BookingMain() {
-  const [availableTimes, dispatch] = useReducer(updateTimes, initializeTimes());
+  const [availableTimes, dispatch] = useReducer(
+    updateTimes,
+    [],
+    initializeTimes
+  );
+
+  const handleDateChange = (selectedDate) => {
+    dispatch({ type: "UPDATE_TIMES", date: selectedDate });
+  };
+
+  useEffect(() => {
+    const today = new Date();
+    dispatch({ type: "UPDATE_TIMES", date: today });
+  }, []);
 
   return (
     <main className="booking-main">
-      <section className="booking-section">
-        <h1>Reserve Your Table</h1>
-        <p>Fill out the form below to make a reservation at Little Lemon.</p>
-        <BookingForm availableTimes={availableTimes} dispatch={dispatch} />
+      <section className="booking-section container">
+        <h2 className="booking-title">Reserve a Table</h2>
+        <BookingForm
+          availableTimes={availableTimes}
+          dispatch={dispatch}
+          onDateChange={handleDateChange}
+        />
       </section>
     </main>
   );
