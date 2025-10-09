@@ -1,15 +1,15 @@
 import React, { useReducer, useEffect } from "react";
 import BookingForm from "./BookingForm";
 import { useNavigate } from "react-router-dom";
-import { fetchAPI, submitAPI } from "../api"; // ✅ LOKALNI import
+import { fetchAPI, submitAPI } from "../api";
+import { storage } from "../utils/storage";
 
-// Reducer funkcije
-export const initializeTimes = () => {
+const initializeTimes = () => {
   const today = new Date();
   return fetchAPI(today);
 };
 
-export const updateTimes = (state, action) => {
+const updateTimes = (state, action) => {
   switch (action.type) {
     case "UPDATE_TIMES":
       return fetchAPI(new Date(action.date));
@@ -20,7 +20,6 @@ export const updateTimes = (state, action) => {
 
 function BookingMain() {
   const navigate = useNavigate();
-
   const [availableTimes, dispatch] = useReducer(
     updateTimes,
     [],
@@ -29,6 +28,9 @@ function BookingMain() {
 
   const submitForm = (formData) => {
     console.log("📤 Submitting form:", formData);
+
+    storage.set("lastBooking", formData);
+
     const success = submitAPI(formData);
     if (success) {
       console.log("✅ Booking confirmed!");
@@ -41,6 +43,11 @@ function BookingMain() {
   useEffect(() => {
     const today = new Date();
     dispatch({ type: "UPDATE_TIMES", date: today });
+
+    const savedBooking = storage.get("lastBooking");
+    if (savedBooking) {
+      console.log("🗂️ Found previous booking:", savedBooking);
+    }
   }, []);
 
   const handleDateChange = (selectedDate) => {
@@ -63,3 +70,4 @@ function BookingMain() {
 }
 
 export default BookingMain;
+export { initializeTimes, updateTimes };
