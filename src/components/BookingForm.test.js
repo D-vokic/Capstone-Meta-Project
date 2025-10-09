@@ -1,12 +1,3 @@
-// import { render, screen } from "@testing-library/react";
-// import BookingForm from "./BookingForm";
-
-// test("renders the 'Make Your Reservation' button", () => {
-//   render(<BookingForm />);
-//   const buttonElement = screen.getByText("Make Your Reservation");
-//   expect(buttonElement).toBeInTheDocument();
-// });
-
 import { render, screen, fireEvent } from "@testing-library/react";
 import BookingForm from "./BookingForm";
 
@@ -61,7 +52,7 @@ describe("BookingForm React validation logic", () => {
   test("disables submit button when fields are invalid", () => {
     setup();
     const submitButton = screen.getByRole("button", {
-      name: /make your reservation/i,
+      name: /submit reservation form/i,
     });
     expect(submitButton).toBeDisabled();
   });
@@ -93,7 +84,7 @@ describe("BookingForm React validation logic", () => {
     fireEvent.change(occasionSelect, { target: { value: "Birthday" } });
 
     const submitButton = screen.getByRole("button", {
-      name: /make your reservation/i,
+      name: /submit reservation form/i,
     });
     expect(submitButton).not.toBeDisabled();
   });
@@ -116,7 +107,7 @@ describe("BookingForm React validation logic", () => {
     });
 
     const submitButton = screen.getByRole("button", {
-      name: /make your reservation/i,
+      name: /submit reservation form/i,
     });
     fireEvent.click(submitButton);
 
