@@ -8,8 +8,8 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
   const [occasion, setOccasion] = useState("");
   const [isValid, setIsValid] = useState(false);
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false); // 👈 NEW
-  const [statusMessage, setStatusMessage] = useState(""); // 👈 NEW
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
 
   const today = new Date().toISOString().split("T")[0];
 
@@ -40,25 +40,14 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     validateForm();
-
     if (Object.keys(errors).length === 0) {
       setIsSubmitting(true);
       setStatusMessage("Submitting your reservation...");
-
       const formData = { date, time, guests, occasion };
-
-      await new Promise((res) => setTimeout(res, 800));
-
-      try {
-        submitForm(formData);
-        setStatusMessage("✅ Reservation submitted successfully!");
-      } catch (error) {
-        setStatusMessage("❌ Failed to submit reservation. Please try again.");
-      } finally {
-        setIsSubmitting(false);
-      }
-    } else {
-      setStatusMessage("⚠️ Please fix the form errors before submitting.");
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      submitForm(formData);
+      setIsSubmitting(false);
+      setStatusMessage("Reservation successfully submitted!");
     }
   };
 
@@ -69,10 +58,10 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
       noValidate
       aria-label="Reservation form"
     >
-      <fieldset disabled={isSubmitting}>
-        {" "}
-        <legend>Reservation Details</legend>
-        <label htmlFor="res-date">Choose date</label>
+      <fieldset>
+        <legend>Your Booking Information</legend>
+
+        <label htmlFor="res-date">Select your date</label>
         <input
           type="date"
           id="res-date"
@@ -87,7 +76,8 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
             {errors.date}
           </span>
         )}
-        <label htmlFor="res-time">Choose time</label>
+
+        <label htmlFor="res-time">Select your time</label>
         <select
           id="res-time"
           value={time}
@@ -111,7 +101,8 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
             {errors.time}
           </span>
         )}
-        <label htmlFor="guests">Number of guests</label>
+
+        <label htmlFor="guests">How many guests?</label>
         <input
           type="number"
           id="guests"
@@ -128,7 +119,8 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
             {errors.guests}
           </span>
         )}
-        <label htmlFor="occasion">Occasion</label>
+
+        <label htmlFor="occasion">What’s the occasion?</label>
         <select
           id="occasion"
           value={occasion}
@@ -147,20 +139,19 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
             {errors.occasion}
           </span>
         )}
+
         <button
           type="submit"
           aria-label="Submit reservation form"
           disabled={!isValid || isSubmitting}
           className={!isValid || isSubmitting ? "disabled-btn" : ""}
         >
-          {isSubmitting ? "Submitting..." : "Make Your Reservation"}
+          {isSubmitting ? "Submitting..." : "Confirm Reservation"}
         </button>
+
         {statusMessage && (
           <p
-            className="status-message"
-            role="status"
-            aria-live="polite"
-            style={{ marginTop: "0.5rem", color: "#495e57" }}
+            className={`status-message ${isSubmitting ? "loading" : "success"}`}
           >
             {statusMessage}
           </p>
