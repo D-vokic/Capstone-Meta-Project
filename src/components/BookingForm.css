@@ -87,3 +87,16 @@
     transform: translateY(0);
   }
 }
+
+.status-message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.75rem;
+  text-align: center;
+  color: #495e57;
+  background-color: #f4f5f4;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  animation: fadeIn 0.3s ease-in-out;
+}

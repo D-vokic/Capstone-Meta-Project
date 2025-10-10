@@ -1,4 +1,4 @@
-import { render, screen, fireEvent } from "@testing-library/react";
+import { render, screen, fireEvent, waitFor } from "@testing-library/react";
 import BookingForm from "./BookingForm";
 
 describe("BookingForm HTML5 validation", () => {
@@ -89,7 +89,7 @@ describe("BookingForm React validation logic", () => {
     expect(submitButton).not.toBeDisabled();
   });
 
-  test("calls submitForm when all fields valid and submitted", () => {
+  test("calls submitForm when all fields valid and submitted", async () => {
     render(<BookingForm {...mockProps} />);
 
     const dateInput = screen.getByLabelText(/choose date/i);
@@ -111,7 +111,10 @@ describe("BookingForm React validation logic", () => {
     });
     fireEvent.click(submitButton);
 
-    expect(mockProps.submitForm).toHaveBeenCalledTimes(1);
+    await waitFor(() => {
+      expect(mockProps.submitForm).toHaveBeenCalledTimes(1);
+    });
+
     expect(mockProps.submitForm).toHaveBeenCalledWith({
       date: today,
       time: "17:00",
