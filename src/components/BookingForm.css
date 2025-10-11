@@ -1,3 +1,105 @@
+/* .booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 340px;
+  width: 100%;
+  background-color: #fff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form fieldset {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.booking-form legend {
+  font-weight: bold;
+  color: #495e57;
+  margin-bottom: 1rem;
+}
+
+.booking-form label {
+  font-weight: 600;
+  color: #495e57;
+  margin-bottom: 0.25rem;
+  display: block;
+}
+
+.booking-form input,
+.booking-form select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.booking-form input:focus,
+.booking-form select:focus {
+  outline: none;
+  border-color: #495e57;
+  box-shadow: 0 0 4px rgba(73, 94, 87, 0.4);
+}
+
+.booking-form button[type="submit"] {
+  background-color: #495e57;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.5rem;
+}
+
+.booking-form button[type="submit"]:hover:not(:disabled) {
+  background-color: #384b45;
+}
+
+.disabled-btn {
+  background-color: #bbb !important;
+  cursor: not-allowed !important;
+  opacity: 0.8;
+}
+
+.error-message {
+  color: #d32f2f;
+  font-size: 0.85rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.5rem;
+  display: block;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.status-message {
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.75rem;
+  text-align: center;
+  color: #495e57;
+  background-color: #f4f5f4;
+  padding: 0.5rem;
+  border-radius: 6px;
+  border: 1px solid #e0e0e0;
+  animation: fadeIn 0.3s ease-in-out;
+} */
 .booking-form {
   display: flex;
   flex-direction: column;
@@ -60,6 +162,21 @@
 
 .booking-form button[type="submit"]:hover:not(:disabled) {
   background-color: #384b45;
+}
+
+.secondary-btn {
+  background-color: #f4f5f4;
+  color: #495e57;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-top: 0.25rem;
+}
+
+.secondary-btn:hover:not(:disabled) {
+  background-color: #e6e8e6;
 }
 
 .disabled-btn {
