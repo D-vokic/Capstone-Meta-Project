@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import "./BookingForm.css";
 
 function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [guests, setGuests] = useState(1);
@@ -13,22 +15,37 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
 
   const today = new Date().toISOString().split("T")[0];
 
-  const validateForm = () => {
+  const validateForm = (values) => {
     const newErrors = {};
-    if (!date) newErrors.date = "Please select a date.";
-    else if (date < today) newErrors.date = "Date cannot be in the past.";
-    if (!time) newErrors.time = "Please select a time.";
-    if (!guests || guests < 1 || guests > 10)
+    if (!values.fullName.trim())
+      newErrors.fullName = "Please enter your full name.";
+    if (!values.email.trim())
+      newErrors.email = "Please enter your email address.";
+    else if (!/\S+@\S+\.\S+/.test(values.email))
+      newErrors.email = "Please enter a valid email address.";
+    if (!values.date) newErrors.date = "Please select a date.";
+    else if (values.date < today)
+      newErrors.date = "Date cannot be in the past.";
+    if (!values.time) newErrors.time = "Please select a time.";
+    if (!values.guests || values.guests < 1 || values.guests > 10)
       newErrors.guests = "Guests must be between 1 and 10.";
-    if (!occasion) newErrors.occasion = "Please select an occasion.";
+    if (!values.occasion) newErrors.occasion = "Please select an occasion.";
 
     setErrors(newErrors);
-    setIsValid(Object.keys(newErrors).length === 0);
+    return Object.keys(newErrors).length === 0;
   };
 
   useEffect(() => {
-    validateForm();
-  }, [date, time, guests, occasion]);
+    const valid = validateForm({
+      fullName,
+      email,
+      date,
+      time,
+      guests,
+      occasion,
+    });
+    setIsValid(valid);
+  }, [fullName, email, date, time, guests, occasion]);
 
   const handleDateChange = (e) => {
     const selectedDate = e.target.value;
@@ -39,11 +56,18 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    validateForm();
-    if (Object.keys(errors).length === 0) {
+    const valid = validateForm({
+      fullName,
+      email,
+      date,
+      time,
+      guests,
+      occasion,
+    });
+    if (valid) {
       setIsSubmitting(true);
       setStatusMessage("Submitting your reservation...");
-      const formData = { date, time, guests, occasion };
+      const formData = { fullName, email, date, time, guests, occasion };
       await new Promise((resolve) => setTimeout(resolve, 1500));
       submitForm(formData);
       setIsSubmitting(false);
@@ -60,6 +84,38 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
     >
       <fieldset>
         <legend>Your Booking Information</legend>
+
+        <label htmlFor="full-name">Full Name</label>
+        <input
+          type="text"
+          id="full-name"
+          placeholder="Enter your full name"
+          value={fullName}
+          onChange={(e) => setFullName(e.target.value)}
+          required
+          aria-describedby={errors.fullName ? "name-error" : undefined}
+        />
+        {errors.fullName && (
+          <span id="name-error" className="error-message">
+            {errors.fullName}
+          </span>
+        )}
+
+        <label htmlFor="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          placeholder="Enter your email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          aria-describedby={errors.email ? "email-error" : undefined}
+        />
+        {errors.email && (
+          <span id="email-error" className="error-message">
+            {errors.email}
+          </span>
+        )}
 
         <label htmlFor="res-date">Select your date</label>
         <input

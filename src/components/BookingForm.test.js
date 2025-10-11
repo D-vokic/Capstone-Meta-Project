@@ -57,20 +57,22 @@ describe("BookingForm React validation logic", () => {
     expect(submitButton).toBeDisabled();
   });
 
-  test("shows error messages for invalid inputs", async () => {
+  test("shows error messages for invalid inputs", () => {
     setup();
-
     const guestsInput = screen.getByLabelText(/how many guests/i);
     fireEvent.change(guestsInput, { target: { value: 0 } });
-
-    await waitFor(() => {
-      const errorMsg = screen.getByText(/guests must be between 1 and 10/i);
-      expect(errorMsg).toBeInTheDocument();
-    });
+    const errorMsg = screen.getByText(/guests must be between 1 and 10/i);
+    expect(errorMsg).toBeInTheDocument();
   });
 
   test("enables submit button when all fields are valid", async () => {
     setup();
+
+    const fullNameInput = screen.getByLabelText(/full name/i);
+    fireEvent.change(fullNameInput, { target: { value: "John Doe" } });
+
+    const emailInput = screen.getByLabelText(/email address/i);
+    fireEvent.change(emailInput, { target: { value: "john@example.com" } });
 
     const dateInput = screen.getByLabelText(/select your date/i);
     const today = new Date().toISOString().split("T")[0];
@@ -95,6 +97,12 @@ describe("BookingForm React validation logic", () => {
 
   test("calls submitForm when all fields valid and submitted", async () => {
     render(<BookingForm {...mockProps} />);
+
+    const fullNameInput = screen.getByLabelText(/full name/i);
+    fireEvent.change(fullNameInput, { target: { value: "Anna Smith" } });
+
+    const emailInput = screen.getByLabelText(/email address/i);
+    fireEvent.change(emailInput, { target: { value: "anna@example.com" } });
 
     const dateInput = screen.getByLabelText(/select your date/i);
     const today = new Date().toISOString().split("T")[0];
@@ -123,6 +131,8 @@ describe("BookingForm React validation logic", () => {
     );
 
     expect(mockProps.submitForm).toHaveBeenCalledWith({
+      fullName: "Anna Smith",
+      email: "anna@example.com",
       date: today,
       time: "17:00",
       guests: "3",
