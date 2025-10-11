@@ -15,36 +15,22 @@
 
 //   const today = new Date().toISOString().split("T")[0];
 
-//   const validateForm = (values) => {
+//   const validateForm = () => {
 //     const newErrors = {};
-//     if (!values.fullName.trim())
-//       newErrors.fullName = "Please enter your full name.";
-//     if (!values.email.trim())
-//       newErrors.email = "Please enter your email address.";
-//     else if (!/\S+@\S+\.\S+/.test(values.email))
-//       newErrors.email = "Please enter a valid email address.";
-//     if (!values.date) newErrors.date = "Please select a date.";
-//     else if (values.date < today)
-//       newErrors.date = "Date cannot be in the past.";
-//     if (!values.time) newErrors.time = "Please select a time.";
-//     if (!values.guests || values.guests < 1 || values.guests > 10)
+//     if (!fullName) newErrors.fullName = "Please enter your full name.";
+//     if (!email) newErrors.email = "Please enter your email address.";
+//     if (!date) newErrors.date = "Please select a date.";
+//     else if (date < today) newErrors.date = "Date cannot be in the past.";
+//     if (!time) newErrors.time = "Please select a time.";
+//     if (!guests || guests < 1 || guests > 10)
 //       newErrors.guests = "Guests must be between 1 and 10.";
-//     if (!values.occasion) newErrors.occasion = "Please select an occasion.";
-
+//     if (!occasion) newErrors.occasion = "Please select an occasion.";
 //     setErrors(newErrors);
-//     return Object.keys(newErrors).length === 0;
+//     setIsValid(Object.keys(newErrors).length === 0);
 //   };
 
 //   useEffect(() => {
-//     const valid = validateForm({
-//       fullName,
-//       email,
-//       date,
-//       time,
-//       guests,
-//       occasion,
-//     });
-//     setIsValid(valid);
+//     validateForm();
 //   }, [fullName, email, date, time, guests, occasion]);
 
 //   const handleDateChange = (e) => {
@@ -56,15 +42,8 @@
 
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
-//     const valid = validateForm({
-//       fullName,
-//       email,
-//       date,
-//       time,
-//       guests,
-//       occasion,
-//     });
-//     if (valid) {
+//     validateForm();
+//     if (Object.keys(errors).length === 0) {
 //       setIsSubmitting(true);
 //       setStatusMessage("Submitting your reservation...");
 //       const formData = { fullName, email, date, time, guests, occasion };
@@ -73,6 +52,18 @@
 //       setIsSubmitting(false);
 //       setStatusMessage("Reservation successfully submitted!");
 //     }
+//   };
+
+//   const handleReset = () => {
+//     setFullName("");
+//     setEmail("");
+//     setDate("");
+//     setTime("");
+//     setGuests(1);
+//     setOccasion("");
+//     setErrors({});
+//     setIsValid(false);
+//     setStatusMessage("");
 //   };
 
 //   return (
@@ -89,10 +80,10 @@
 //         <input
 //           type="text"
 //           id="full-name"
-//           placeholder="Enter your full name"
 //           value={fullName}
 //           onChange={(e) => setFullName(e.target.value)}
 //           required
+//           placeholder="Enter your full name"
 //           aria-describedby={errors.fullName ? "name-error" : undefined}
 //         />
 //         {errors.fullName && (
@@ -105,10 +96,10 @@
 //         <input
 //           type="email"
 //           id="email"
-//           placeholder="Enter your email"
 //           value={email}
 //           onChange={(e) => setEmail(e.target.value)}
 //           required
+//           placeholder="Enter your email"
 //           aria-describedby={errors.email ? "email-error" : undefined}
 //         />
 //         {errors.email && (
@@ -205,6 +196,15 @@
 //           {isSubmitting ? "Submitting..." : "Confirm Reservation"}
 //         </button>
 
+//         <button
+//           type="button"
+//           onClick={handleReset}
+//           className="secondary-btn"
+//           disabled={isSubmitting}
+//         >
+//           Clear Form
+//         </button>
+
 //         {statusMessage && (
 //           <p
 //             className={`status-message ${isSubmitting ? "loading" : "success"}`}
@@ -239,12 +239,15 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
     const newErrors = {};
     if (!fullName) newErrors.fullName = "Please enter your full name.";
     if (!email) newErrors.email = "Please enter your email address.";
+    else if (!/\S+@\S+\.\S+/.test(email))
+      newErrors.email = "Please enter a valid email address.";
     if (!date) newErrors.date = "Please select a date.";
     else if (date < today) newErrors.date = "Date cannot be in the past.";
     if (!time) newErrors.time = "Please select a time.";
     if (!guests || guests < 1 || guests > 10)
       newErrors.guests = "Guests must be between 1 and 10.";
     if (!occasion) newErrors.occasion = "Please select an occasion.";
+
     setErrors(newErrors);
     setIsValid(Object.keys(newErrors).length === 0);
   };
@@ -294,7 +297,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
       aria-label="Reservation form"
     >
       <fieldset>
-        <legend>Your Booking Information</legend>
+        <legend>Reservation Details</legend>
 
         <label htmlFor="full-name">Full Name</label>
         <input
@@ -303,7 +306,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           value={fullName}
           onChange={(e) => setFullName(e.target.value)}
           required
-          placeholder="Enter your full name"
+          placeholder="Enter full name"
           aria-describedby={errors.fullName ? "name-error" : undefined}
         />
         {errors.fullName && (
@@ -319,7 +322,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          placeholder="Enter your email"
+          placeholder="Enter email address"
           aria-describedby={errors.email ? "email-error" : undefined}
         />
         {errors.email && (
@@ -407,23 +410,25 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           </span>
         )}
 
-        <button
-          type="submit"
-          aria-label="Submit reservation form"
-          disabled={!isValid || isSubmitting}
-          className={!isValid || isSubmitting ? "disabled-btn" : ""}
-        >
-          {isSubmitting ? "Submitting..." : "Confirm Reservation"}
-        </button>
+        <div className="button-group">
+          <button
+            type="submit"
+            aria-label="Submit reservation form"
+            disabled={!isValid || isSubmitting}
+            className={!isValid || isSubmitting ? "disabled-btn" : ""}
+          >
+            {isSubmitting ? "Submitting..." : "Submit Reservation"}
+          </button>
 
-        <button
-          type="button"
-          onClick={handleReset}
-          className="secondary-btn"
-          disabled={isSubmitting}
-        >
-          Clear Form
-        </button>
+          <button
+            type="button"
+            className="reset-btn"
+            onClick={handleReset}
+            disabled={isSubmitting}
+          >
+            Reset Form
+          </button>
+        </div>
 
         {statusMessage && (
           <p
