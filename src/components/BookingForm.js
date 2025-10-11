@@ -27,7 +27,6 @@
 //     if (!guests || guests < 1 || guests > 10)
 //       newErrors.guests = "Guests must be between 1 and 10.";
 //     if (!occasion) newErrors.occasion = "Please select an occasion.";
-
 //     setErrors(newErrors);
 //     setIsValid(Object.keys(newErrors).length === 0);
 //   };
@@ -43,13 +42,36 @@
 //     dispatch({ type: "UPDATE_TIMES", date: selectedDate });
 //   };
 
+//   const handleGuestsChange = (e) => {
+//     let value = Number(e.target.value);
+//     if (value < 1 || value > 10) {
+//       setErrors((prev) => ({
+//         ...prev,
+//         guests: "Guests must be between 1 and 10.",
+//       }));
+//     } else {
+//       setErrors((prev) => {
+//         const { guests, ...rest } = prev;
+//         return rest;
+//       });
+//     }
+//     setGuests(value);
+//   };
+
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     validateForm();
 //     if (Object.keys(errors).length === 0) {
 //       setIsSubmitting(true);
 //       setStatusMessage("Submitting your reservation...");
-//       const formData = { fullName, email, date, time, guests, occasion };
+//       const formData = {
+//         fullName,
+//         email,
+//         date,
+//         time,
+//         guests: guests.toString(),
+//         occasion,
+//       };
 //       await new Promise((resolve) => setTimeout(resolve, 1500));
 //       submitForm(formData);
 //       setIsSubmitting(false);
@@ -100,6 +122,7 @@
 //           type="email"
 //           id="email"
 //           value={email}
+//           pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
 //           onChange={(e) => setEmail(e.target.value)}
 //           required
 //           placeholder="Enter email address"
@@ -159,7 +182,7 @@
 //           min="1"
 //           max="10"
 //           value={guests}
-//           onChange={(e) => setGuests(e.target.value)}
+//           onChange={handleGuestsChange}
 //           required
 //           placeholder="Enter number of guests"
 //           aria-describedby={errors.guests ? "guests-error" : undefined}
@@ -225,14 +248,15 @@
 // export default BookingForm;
 import React, { useState, useEffect } from "react";
 import "./BookingForm.css";
+import { storage } from "../utils/storage";
 
 function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
-  const [fullName, setFullName] = useState("");
-  const [email, setEmail] = useState("");
-  const [date, setDate] = useState("");
-  const [time, setTime] = useState("");
-  const [guests, setGuests] = useState(1);
-  const [occasion, setOccasion] = useState("");
+  const [fullName, setFullName] = useState(storage.get("fullName") || "");
+  const [email, setEmail] = useState(storage.get("email") || "");
+  const [date, setDate] = useState(storage.get("date") || "");
+  const [time, setTime] = useState(storage.get("time") || "");
+  const [guests, setGuests] = useState(storage.get("guests") || 1);
+  const [occasion, setOccasion] = useState(storage.get("occasion") || "");
   const [isValid, setIsValid] = useState(false);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -265,6 +289,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
     setDate(selectedDate);
     onDateChange(selectedDate);
     dispatch({ type: "UPDATE_TIMES", date: selectedDate });
+    storage.set("date", selectedDate);
   };
 
   const handleGuestsChange = (e) => {
@@ -281,6 +306,12 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
       });
     }
     setGuests(value);
+    storage.set("guests", value);
+  };
+
+  const handleChange = (setter, key) => (e) => {
+    setter(e.target.value);
+    storage.set(key, e.target.value);
   };
 
   const handleSubmit = async (e) => {
@@ -314,6 +345,12 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
     setErrors({});
     setIsValid(false);
     setStatusMessage("");
+    storage.remove("fullName");
+    storage.remove("email");
+    storage.remove("date");
+    storage.remove("time");
+    storage.remove("guests");
+    storage.remove("occasion");
   };
 
   return (
@@ -331,9 +368,9 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           type="text"
           id="full-name"
           value={fullName}
-          onChange={(e) => setFullName(e.target.value)}
+          onChange={handleChange(setFullName, "fullName")}
           required
-          placeholder="Enter full name"
+          placeholder="e.g. John Doe"
           aria-describedby={errors.fullName ? "name-error" : undefined}
         />
         {errors.fullName && (
@@ -347,10 +384,9 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           type="email"
           id="email"
           value={email}
-          pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={handleChange(setEmail, "email")}
           required
-          placeholder="Enter email address"
+          placeholder="e.g. john@example.com"
           aria-describedby={errors.email ? "email-error" : undefined}
         />
         {errors.email && (
@@ -379,11 +415,11 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
         <select
           id="res-time"
           value={time}
-          onChange={(e) => setTime(e.target.value)}
+          onChange={handleChange(setTime, "time")}
           required
           aria-describedby={errors.time ? "time-error" : undefined}
         >
-          <option value="">Select a time</option>
+          <option value="">Choose available time</option>
           {availableTimes && availableTimes.length > 0 ? (
             availableTimes.map((t) => (
               <option key={t} value={t}>
@@ -409,7 +445,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           value={guests}
           onChange={handleGuestsChange}
           required
-          placeholder="Enter number of guests"
+          placeholder="1–10 guests"
           aria-describedby={errors.guests ? "guests-error" : undefined}
         />
         {errors.guests && (
@@ -422,11 +458,11 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
         <select
           id="occasion"
           value={occasion}
-          onChange={(e) => setOccasion(e.target.value)}
+          onChange={handleChange(setOccasion, "occasion")}
           required
           aria-describedby={errors.occasion ? "occasion-error" : undefined}
         >
-          <option value="">Select occasion</option>
+          <option value="">Select an occasion</option>
           <option value="Birthday">Birthday</option>
           <option value="Anniversary">Anniversary</option>
           <option value="Wedding">Wedding</option>
