@@ -19,12 +19,15 @@
 //     const newErrors = {};
 //     if (!fullName) newErrors.fullName = "Please enter your full name.";
 //     if (!email) newErrors.email = "Please enter your email address.";
+//     else if (!/\S+@\S+\.\S+/.test(email))
+//       newErrors.email = "Please enter a valid email address.";
 //     if (!date) newErrors.date = "Please select a date.";
 //     else if (date < today) newErrors.date = "Date cannot be in the past.";
 //     if (!time) newErrors.time = "Please select a time.";
 //     if (!guests || guests < 1 || guests > 10)
 //       newErrors.guests = "Guests must be between 1 and 10.";
 //     if (!occasion) newErrors.occasion = "Please select an occasion.";
+
 //     setErrors(newErrors);
 //     setIsValid(Object.keys(newErrors).length === 0);
 //   };
@@ -74,7 +77,7 @@
 //       aria-label="Reservation form"
 //     >
 //       <fieldset>
-//         <legend>Your Booking Information</legend>
+//         <legend>Reservation Details</legend>
 
 //         <label htmlFor="full-name">Full Name</label>
 //         <input
@@ -83,7 +86,7 @@
 //           value={fullName}
 //           onChange={(e) => setFullName(e.target.value)}
 //           required
-//           placeholder="Enter your full name"
+//           placeholder="Enter full name"
 //           aria-describedby={errors.fullName ? "name-error" : undefined}
 //         />
 //         {errors.fullName && (
@@ -99,7 +102,7 @@
 //           value={email}
 //           onChange={(e) => setEmail(e.target.value)}
 //           required
-//           placeholder="Enter your email"
+//           placeholder="Enter email address"
 //           aria-describedby={errors.email ? "email-error" : undefined}
 //         />
 //         {errors.email && (
@@ -187,23 +190,25 @@
 //           </span>
 //         )}
 
-//         <button
-//           type="submit"
-//           aria-label="Submit reservation form"
-//           disabled={!isValid || isSubmitting}
-//           className={!isValid || isSubmitting ? "disabled-btn" : ""}
-//         >
-//           {isSubmitting ? "Submitting..." : "Confirm Reservation"}
-//         </button>
+//         <div className="button-group">
+//           <button
+//             type="submit"
+//             aria-label="Submit reservation form"
+//             disabled={!isValid || isSubmitting}
+//             className={!isValid || isSubmitting ? "disabled-btn" : ""}
+//           >
+//             {isSubmitting ? "Submitting..." : "Submit Reservation"}
+//           </button>
 
-//         <button
-//           type="button"
-//           onClick={handleReset}
-//           className="secondary-btn"
-//           disabled={isSubmitting}
-//         >
-//           Clear Form
-//         </button>
+//           <button
+//             type="button"
+//             className="reset-btn"
+//             onClick={handleReset}
+//             disabled={isSubmitting}
+//           >
+//             Reset Form
+//           </button>
+//         </div>
 
 //         {statusMessage && (
 //           <p
@@ -247,7 +252,6 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
     if (!guests || guests < 1 || guests > 10)
       newErrors.guests = "Guests must be between 1 and 10.";
     if (!occasion) newErrors.occasion = "Please select an occasion.";
-
     setErrors(newErrors);
     setIsValid(Object.keys(newErrors).length === 0);
   };
@@ -263,13 +267,36 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
     dispatch({ type: "UPDATE_TIMES", date: selectedDate });
   };
 
+  const handleGuestsChange = (e) => {
+    let value = Number(e.target.value);
+    if (value < 1 || value > 10) {
+      setErrors((prev) => ({
+        ...prev,
+        guests: "Guests must be between 1 and 10.",
+      }));
+    } else {
+      setErrors((prev) => {
+        const { guests, ...rest } = prev;
+        return rest;
+      });
+    }
+    setGuests(value);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     validateForm();
     if (Object.keys(errors).length === 0) {
       setIsSubmitting(true);
       setStatusMessage("Submitting your reservation...");
-      const formData = { fullName, email, date, time, guests, occasion };
+      const formData = {
+        fullName,
+        email,
+        date,
+        time,
+        guests: guests.toString(),
+        occasion,
+      };
       await new Promise((resolve) => setTimeout(resolve, 1500));
       submitForm(formData);
       setIsSubmitting(false);
@@ -320,6 +347,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           type="email"
           id="email"
           value={email}
+          pattern="^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$"
           onChange={(e) => setEmail(e.target.value)}
           required
           placeholder="Enter email address"
@@ -379,7 +407,7 @@ function BookingForm({ availableTimes, dispatch, onDateChange, submitForm }) {
           min="1"
           max="10"
           value={guests}
-          onChange={(e) => setGuests(e.target.value)}
+          onChange={handleGuestsChange}
           required
           placeholder="Enter number of guests"
           aria-describedby={errors.guests ? "guests-error" : undefined}
